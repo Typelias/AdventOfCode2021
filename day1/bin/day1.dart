@@ -28,19 +28,23 @@ void partOne() {
 }
 
 void partTwo() {
-  //final list = readInput();
-  const list = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
+  final list = readInput();
+  //const list = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
   int numberOfIncrements = 0;
   int prevSum = -1;
-  for (var i = 2; i < list.length - 3; i++) {
+
+  for (var i = 2; i < list.length; i++) {
     if (prevSum == -1) {
-      prevSum = list.sublist(i, i + 2).sum;
-      print(prevSum);
+      prevSum = list.sublist(i - 2, i + 1).sum;
       continue;
     }
-    final sum = list.sublist(i, i + 2).sum;
-    print(sum);
+    final sum = list.sublist(i - 2, i + 1).sum;
+    if (sum > prevSum) {
+      numberOfIncrements++;
+    }
+    prevSum = sum;
   }
+  print("Number of increments: $numberOfIncrements");
 }
 
 void main(List<String> arguments) {
